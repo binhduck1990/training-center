@@ -4,6 +4,8 @@ import '../../css/teacher.css';
 import LayoutDashboard from "../../components/Layout";
 import { getCourseComing } from "../../Api";
 import { handleError } from "../../helper";
+import MomentReact from 'react-moment';
+import * as moment from 'moment';
 
 const { Content } = Layout;
 const { Text } = Typography;
@@ -11,18 +13,20 @@ const { Countdown } = Statistic;
 
 export default function TeacherDashboard() {
     const [listCourseComing, setListCourseComing] = useState([])
+    const [startedAt, setStartedAt] = useState('');
     useEffect( () => {
         async function getListCourseComing(){
             try{
-                const listCourseComing = await getCourseComing()
-                setListCourseComing(listCourseComing)
+                const data = await getCourseComing()
+                setListCourseComing(data.result)
+                setStartedAt(data.server_ts)
             }catch (e) {
                 handleError(e)
             }
         }
         getListCourseComing()
     }, [])
-    console.log('listCourseComing', listCourseComing)
+    console.log('startedAt', moment().format('DD-MM-YYYY HH:mm'), moment(startedAt).format('DD-MM-YYYY HH:mm'))
     return(
         <LayoutDashboard>
             <Content
@@ -44,38 +48,30 @@ export default function TeacherDashboard() {
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>
-                                <Text type="success">08:30 - 17/08</Text>
-                            </td>
-                            <td>Đào tạo kiểm định khóa 1</td>
-                            <td>
-                                <strong>
-                                    <Button type="primary" size="">Tham gia ngay</Button>
-                                </strong>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>15:10 - 17/08</td>
-                            <td>Lập trình C++</td>
-                            <td>
-                                <Countdown title="Diễn ra sau" value={Date.now() + 5028 * 1000} />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>08:10 - 19/08</td>
-                            <td>Lập trình Pascal</td>
-                            <td>
-                                <Countdown title="Diễn ra sau" value={Date.now() + 20026 * 1000} />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>08:10 - 20/08</td>
-                            <td>Lịch sử đảng</td>
-                            <td>
-                                <Countdown title="Diễn ra sau" value={Date.now() + 40044 * 1000} />
-                            </td>
-                        </tr>
+                        {listCourseComing && listCourseComing.map((item) => {
+                            return (
+                                <>
+                                    <tr key={item._id}>
+                                        <td>
+                                            <div>{moment.unix(item.start_time_ts).format('HH:mm - DD/MM')}</div>
+                                        </td>
+                                        <td>{item.name}</td>
+                                        <td>
+                                            <strong>
+                                                <Button type="primary" size="">Tham gia ngay</Button>
+                                            </strong>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>15:10 - 17/08</td>
+                                        <td>Lập trình C++</td>
+                                        <td>
+                                            <Countdown title="Diễn ra sau" value={Date.now() + 5028 * 1000} />
+                                        </td>
+                                    </tr>
+                                </>
+                            )
+                        })}
                         </tbody>
                     </table>
                 </Card>
