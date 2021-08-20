@@ -1,51 +1,37 @@
 import axios from 'axios'
-import {notification} from 'antd'
 
 const apiDomain = process.env.REACT_APP_API
-const handleError = (error, history) => {
-    if(error?.response?.status === 401){
-        localStorage.removeItem('token')
-        history.replace('/login')
-    }else if(error?.response?.status === 404){
-        history.replace('/404')
-    }else if(error?.response?.status === 500){
-        history.replace('/500')
-    }else if(error?.response?.status === 400 || error?.response?.status === 403){
-        let message = error.response.data.message
-        notification['error']({
-            message: message
-        })
-    }else{
-        notification['error']({
-            message: 'Có lỗi trong quá trình xử lý'
-        })
+let configAxios = {
+    baseURL: apiDomain,
+    headers: {
+        "Content-Type": "multipart/form-data; boundary=<calculated when request is sent>"
     }
-}
-const login = async (payload, cb_success = null, cb_error = null) => {
+};
+let axiosInstance = axios.create(configAxios);
+
+const getCourseComing = async (payload = {}) => {
+    let fd = new FormData();
+    fd.append('is_teacher',1)
+    fd.append('items_per_page',-1)
+    fd.append('_sand_expand','scheduled')
+    fd.append('_sand_ajax',1)
+    fd.append('_sand_platform',3)
+    fd.append('_sand_domain','hth')
+    fd.append('_sand_readmin',1)
+    fd.append('_sand_is_wan',false)
+    fd.append('_sand_token','7a384_7hjp3')
+    fd.append('_sand_uiid',267365)
+    fd.append('_sand_uid','5eeae94062f9a8551863e1f4')
+    console.log('fd', fd)
     try{
-        const res = await axios.post(
-            `${apiDomain}/user/login`, {
-                lname: payload.username,
-                pass: payload.password,
-                submit:1,
-                _sand_ajax:1,
-                _sand_platform:3,
-                _sand_readmin:1,
-                _sand_domain:'hth',
-                _sand_is_wan:false
-            }
+        return await axiosInstance.post(
+            `/session/search`, fd
         )
-        if(typeof(cb_success) == 'function'){
-            cb_success(res)
-        }
     }catch (e) {
-        if(typeof(cb_error) == 'function'){
-            cb_error(e)
-        }
+        throw e
     }
 }
 
 export {
-    handleError,
-    login
+    getCourseComing
 }
