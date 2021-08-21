@@ -17,7 +17,7 @@ export default function TeacherDashboard() {
 
     const [lessionOver, setLessionOver] = useState([])
     const checkTime = function(startTime, endTime) {
-        if(startTime - 15 * 60 > Date.now() / 1000) { // Nếu chưa đến thời gian học
+        if(startTime - 15 * 60 > Date.now() / 1000) { // Nếu chưa đến thời gian học. CHo phép học trước 15p
             return 0;
         }else{
             if(endTime >= Date.now() / 1000){ // Nếu đã đến thời gian học và chưa kết thúc buổi học
