@@ -9,7 +9,7 @@ let configAxios = {
 };
 let axiosInstance = axios.create(configAxios);
 
-const getCourseComing = async (payload = {}) => {
+const apiGetListCourseOver = async (payload = {}) => {
     let fd = new FormData();
     fd.append('is_teacher',1)
     fd.append('items_per_page',5)
@@ -19,8 +19,8 @@ const getCourseComing = async (payload = {}) => {
     fd.append('_sand_domain','imard')
     fd.append('_sand_readmin',1)
     fd.append('_sand_is_wan',false)
-    fd.append('_sand_token','e14cf_UMxoe')
-    fd.append('_sand_uiid',220587)
+    fd.append('_sand_token','7a384_I864p')
+    fd.append('_sand_uiid',267365)
     fd.append('_sand_uid','5ed85dbcda049d22da692fc4')
     try{
         const res = await axiosInstance.post(
@@ -35,7 +35,7 @@ const getCourseComing = async (payload = {}) => {
     }
 }
 
-const apiGetLessionOver = async (payload = {}) => {
+const apiGetCourseOver = async (payload = {}) => {
     let fd = new FormData();
     fd.append('is_teacher',1)
     fd.append('items_per_page',5)
@@ -45,8 +45,8 @@ const apiGetLessionOver = async (payload = {}) => {
     fd.append('_sand_domain','imard')
     fd.append('_sand_readmin',1)
     fd.append('_sand_is_wan',false)
-    fd.append('_sand_token','e14cf_UMxoe')
-    fd.append('_sand_uiid',220587)
+    fd.append('_sand_token','7a384_I864p')
+    fd.append('_sand_uiid',267365)
     fd.append('_sand_uid','5ed85dbcda049d22da692fc4')
     fd.append('session_status',1)
     try{
@@ -71,8 +71,8 @@ const apiGetLinkLha = async (payload = {}) => {
     fd.append('_sand_domain','imard')
     fd.append('_sand_readmin',1)
     fd.append('_sand_is_wan',false)
-    fd.append('_sand_token','e14cf_UMxoe')
-    fd.append('_sand_uiid',220587)
+    fd.append('_sand_token','7a384_I864p')
+    fd.append('_sand_uiid',267365)
     fd.append('_sand_uid','5ed85dbcda049d22da692fc4')
     fd.append('session_iid',payload.session_iid)
     try{
@@ -89,7 +89,7 @@ const apiGetLinkLha = async (payload = {}) => {
 }
 
 export {
-    getCourseComing,
-    apiGetLessionOver,
+    apiGetListCourseOver,
+    apiGetCourseOver,
     apiGetLinkLha
 }
