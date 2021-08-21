@@ -87,12 +87,37 @@
 }
 .dashboard-table-1 th{
   text-align: left;
+  font-size: 16px;
 }
 .dashboard-table-1 th, .dashboard-table-1 td{
-  padding: 20px 10px;
+  padding: 15px 10px;
 }
 .dashboard-table-1 tr{
   border-bottom: 1px solid #eee;
+}
+.dashboard-table-1 .course-name {
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 0px;
+  color: #444;
+}
+.dashboard-table-1 .name {
+  color: #666;
+}
+.dashboard-table-1 .start-time p:nth-child(1){
+  font-weight: bold;
+  font-size: 16px;
+  counter-reset: #444;
+  margin-bottom: 0px;
+}
+.dashboard-table-1 .start-time p:nth-child(2){
+  color: #444;
+}
+.dashboard-table-1 td p:nth-child(2) {
+  margin-bottom: 0px;
+}
+.card-teacher-dashboard{
+  margin-bottom: 30px !important;
 }
 .dashboard-table-1 tr:last-child{
   border-bottom: none;
