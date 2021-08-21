@@ -19,7 +19,7 @@ const getCourseComing = async (payload = {}) => {
     fd.append('_sand_domain','hth')
     fd.append('_sand_readmin',1)
     fd.append('_sand_is_wan',false)
-    fd.append('_sand_token','7a384_60ADY')
+    fd.append('_sand_token','7a384_yTmQj')
     fd.append('_sand_uiid',267365)
     fd.append('_sand_uid','5eeae94062f9a8551863e1f4')
     try{

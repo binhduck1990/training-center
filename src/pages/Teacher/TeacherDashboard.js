@@ -58,7 +58,7 @@ export default function TeacherDashboard() {
                                         <td>{item.name}</td>
                                         <td>
                                             <strong>
-                                                <Button type="primary" size="">Tham gia ngay</Button>
+                                                <Button type="primary" size="">Tham gia</Button>
                                             </strong>
                                         </td>
                                     </tr>
