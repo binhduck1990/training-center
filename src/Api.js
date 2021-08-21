@@ -62,7 +62,34 @@ const apiGetLessionOver = async (payload = {}) => {
     }
 }
 
+const apiGetLinkLha = async (payload = {}) => {
+    let fd = new FormData();
+    fd.append('is_teacher',1)
+    fd.append('is_app',1)
+    fd.append('_sand_ajax',1)
+    fd.append('_sand_platform',3)
+    fd.append('_sand_domain','imard')
+    fd.append('_sand_readmin',1)
+    fd.append('_sand_is_wan',false)
+    fd.append('_sand_token','e14cf_UMxoe')
+    fd.append('_sand_uiid',220587)
+    fd.append('_sand_uid','5ed85dbcda049d22da692fc4')
+    fd.append('session_iid',payload.session_iid)
+    try{
+        const res = await axiosInstance.post(
+            `/session/api/join-virtual-class`, fd
+        )
+        if(!res?.data.success){
+            throw 'loi he thong'
+        }
+        return res?.data
+    }catch (e) {
+        throw e
+    }
+}
+
 export {
     getCourseComing,
-    apiGetLessionOver
+    apiGetLessionOver,
+    apiGetLinkLha
 }

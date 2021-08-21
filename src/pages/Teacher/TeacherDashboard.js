@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Layout, Button, Card, Typography, Statistic } from 'antd';
 import '../../css/teacher.css';
 import LayoutDashboard from "../../components/Layout";
-import { getCourseComing, apiGetLessionOver } from "../../Api";
+import { getCourseComing, apiGetLessionOver, apiGetLinkLha } from "../../Api";
 import { handleError } from "../../helper";
 import MomentReact from 'react-moment';
 import * as moment from 'moment';
@@ -28,7 +28,17 @@ export default function TeacherDashboard() {
         }
         return 2;
     }
-    console.log(listCourseComing);
+
+    async function getLinkLha(session_iid){
+        try{
+            const data = await apiGetLinkLha({session_iid: session_iid})
+            console.log(data)
+            window.open(data.result.url);
+        }catch (e) {
+            handleError(e)
+        }
+    }
+    
     useEffect( () => {
         async function getListCourseComing(){
             try{
@@ -94,7 +104,7 @@ export default function TeacherDashboard() {
                                 <td>
                                 {(checkTime(item.start_time_ts, item.end_time_ts) === 1 &&
                                         <strong>
-                                            <Button type="primary" size="">Tham gia ngay</Button>
+                                            <Button type="primary" size="" onClick={() => getLinkLha(item.iid)}>Tham gia ngay</Button>
                                     </strong>)
                                     || (checkTime(item.start_time_ts, item.end_time_ts) === 0 &&
                                     <Countdown title="Diễn ra sau" value={item.start_time_ts * 1000} />)
