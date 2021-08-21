@@ -28,7 +28,7 @@ export default function TeacherDashboard() {
         }
         return 2;
     }
-
+    console.log(listCourseComing);
     useEffect( () => {
         async function getListCourseComing(){
             try{
@@ -44,7 +44,6 @@ export default function TeacherDashboard() {
             try{
                 const data = await apiGetLessionOver()
                 setLessionOver(data.result)
-                console.log(data.result);
             }catch (e) {
                 handleError(e)
             }
@@ -53,7 +52,7 @@ export default function TeacherDashboard() {
         getListCourseComing()
         getLessionOver()
     }, [])
-    console.log('startedAt', moment().format('DD-MM-YYYY HH:mm'), moment(startedAt).format('DD-MM-YYYY HH:mm'))
+    
     return(
         <LayoutDashboard>
             <Content
@@ -76,35 +75,34 @@ export default function TeacherDashboard() {
                         <tbody>
                         {listCourseComing && listCourseComing.map((item) => {
                             return (
-                                <>
-                                    <tr key={item._id}>
-                                        <td>
-                                            <div className="start-time">
-                                                <p>
-                                                    {moment.unix(item.start_time_ts).format('DD/MM/YYYY')}
-                                                </p>
-                                                <p>
-                                                    {moment.unix(item.start_time_ts).format('HH:mm')} - {' ' + moment.unix(item.end_time_ts).format('HH:mm')}
-                                                </p>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <p className="course-name">{item.course_name}</p>
-                                            <p className="name">{item.name}</p>
-                                        </td>
-                                        <td>
-                                        {(checkTime(item.start_time_ts, item.end_time_ts) === 1 &&
-                                             <strong>
-                                                 <Button type="primary" size="">Tham gia ngay</Button>
-                                            </strong>)
-                                            || (checkTime(item.start_time_ts, item.end_time_ts) === 0 &&
-                                            <Countdown title="Diễn ra sau" value={item.start_time_ts * 1000} />)
-                                            || (checkTime(item.start_time_ts, item.end_time_ts) === 2 &&
-                                                <p>Buổi học đã kết thúc</p>)
-                                            }
-                                        </td>
-                                    </tr>
-                                </>
+                            <tr key={item._id}>
+                                <td>
+                                    
+                                    <div className="start-time">
+                                        <p>
+                                            {moment.unix(item.start_time_ts).format('DD/MM/YYYY')}
+                                        </p>
+                                        <p>
+                                            {moment.unix(item.start_time_ts).format('HH:mm')} - {' ' + moment.unix(item.end_time_ts).format('HH:mm')}
+                                        </p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p className="course-name">{item.course_name}</p>
+                                    <p className="name">{item.name}</p>
+                                </td>
+                                <td>
+                                {(checkTime(item.start_time_ts, item.end_time_ts) === 1 &&
+                                        <strong>
+                                            <Button type="primary" size="">Tham gia ngay</Button>
+                                    </strong>)
+                                    || (checkTime(item.start_time_ts, item.end_time_ts) === 0 &&
+                                    <Countdown title="Diễn ra sau" value={item.start_time_ts * 1000} />)
+                                    || (checkTime(item.start_time_ts, item.end_time_ts) === 2 &&
+                                        <p>Buổi học đã kết thúc</p>)
+                                    }
+                                </td>
+                            </tr>
                             )
                         })}
                         </tbody>
@@ -122,6 +120,7 @@ export default function TeacherDashboard() {
                         </thead>
                         <tbody>
                             {lessionOver && lessionOver.map((item) => {
+                                return (
                                 <tr key={item._id}>
                                     <td>
                                         <div className="start-time">
@@ -131,20 +130,19 @@ export default function TeacherDashboard() {
                                             <p>
                                                 {moment.unix(item.start_time_ts).format('HH:mm')} - {' ' + moment.unix(item.end_time_ts).format('HH:mm')}
                                             </p>
-                                        {/* {item.start_time_ts - Math.floor(Date.now() / 1000) } */}
                                         </div>
                                     </td>
                                     <td>
                                         <p className="course-name">{item.course_name}</p>
                                         <p className="name">{item.name}</p>
                                     </td>
-                                        <td>
-                                        <Countdown title="Diễn ra sau" value={Date.now() + 5028 * 1000} />
-                                    <strong>
-                                        <Button type="primary" size="">Xuất báo cáo</Button>
-                                    </strong>
-                                        </td>
+                                    <td>
+                                        <strong>
+                                            <Button type="primary" size="">Xuất báo cáo</Button>
+                                        </strong>
+                                    </td>
                                 </tr>
+                                )
                             })}
                         </tbody>
                     </table>

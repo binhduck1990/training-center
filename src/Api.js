@@ -19,7 +19,7 @@ const getCourseComing = async (payload = {}) => {
     fd.append('_sand_domain','imard')
     fd.append('_sand_readmin',1)
     fd.append('_sand_is_wan',false)
-    fd.append('_sand_token','e14cf_54FoH')
+    fd.append('_sand_token','e14cf_UMxoe')
     fd.append('_sand_uiid',220587)
     fd.append('_sand_uid','5ed85dbcda049d22da692fc4')
     try{
@@ -29,7 +29,6 @@ const getCourseComing = async (payload = {}) => {
         if(!res?.data.success){
             throw 'loi he thong'
         }
-        console.log('res?.data', res?.data)
         return res?.data
     }catch (e) {
         throw e
@@ -46,10 +45,10 @@ const apiGetLessionOver = async (payload = {}) => {
     fd.append('_sand_domain','imard')
     fd.append('_sand_readmin',1)
     fd.append('_sand_is_wan',false)
-    fd.append('_sand_token','e14cf_54FoH')
+    fd.append('_sand_token','e14cf_UMxoe')
     fd.append('_sand_uiid',220587)
     fd.append('_sand_uid','5ed85dbcda049d22da692fc4')
-    fd.append('session_status',3)
+    fd.append('session_status',1)
     try{
         const res = await axiosInstance.post(
             `/session/search`, fd
@@ -57,7 +56,6 @@ const apiGetLessionOver = async (payload = {}) => {
         if(!res?.data.success){
             throw 'loi he thong'
         }
-        console.log('res?.data', res?.data)
         return res?.data
     }catch (e) {
         throw e
