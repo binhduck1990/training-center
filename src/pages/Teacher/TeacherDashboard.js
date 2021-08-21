@@ -17,18 +17,18 @@ export default function TeacherDashboard() {
 
     const [lessionOver, setLessionOver] = useState([])
     const checkTime = function(startTime, endTime) {
-        if(startTime > Date.now() / 1000) { // Náº¿u chÆ°a Ä‘áº¿n thá»i gian báº¯t Ä‘áº§u
+        if(startTime - 15 * 60 > Date.now() / 1000) { // Nếu chưa đến thời gian học. CHo phép học trước 15p
             return 0;
         }else{
-            if(endTime >= Date.now() / 1000){ // Náº¿u Ä‘Ã£ báº¯t Ä‘áº§u vÃ  chÆ°a káº¿t thÃºc
+            if(endTime >= Date.now() / 1000){ // Nếu đã đến thời gian học và chưa kết thúc buổi học
                 return 1;
             }else{
-                return 2; // Náº¿u Ä‘Ã£ báº¯t Ä‘áº§u vÃ  Ä‘Ã£ káº¿t thÃºc
+                return 2; // Nếu buổi học đã kết thúc
             }
         }
         return 2;
     }
-
+    console.log(listCourseComing);
     useEffect( () => {
         async function getListCourseComing(){
             try{
@@ -44,7 +44,6 @@ export default function TeacherDashboard() {
             try{
                 const data = await apiGetLessionOver()
                 setLessionOver(data.result)
-                console.log(data.result);
             }catch (e) {
                 handleError(e)
             }
@@ -53,7 +52,7 @@ export default function TeacherDashboard() {
         getListCourseComing()
         getLessionOver()
     }, [])
-    console.log('startedAt', moment().format('DD-MM-YYYY HH:mm'), moment(startedAt).format('DD-MM-YYYY HH:mm'))
+    
     return(
         <LayoutDashboard>
             <Content
@@ -76,37 +75,34 @@ export default function TeacherDashboard() {
                         <tbody>
                         {listCourseComing && listCourseComing.map((item) => {
                             return (
-                                <>
-                                    <tr key={item._id}>
-                                        <td>
-                                            <div className="start-time">
-                                                <p>
-                                                    {moment.unix(item.start_time_ts).format('DD/MM/YYYY')}
-                                                </p>
-                                                <p>
-                                                    {moment.unix(item.start_time_ts).format('HH:mm')} - {' ' + moment.unix(item.end_time_ts).format('HH:mm')}
-                                                </p>
-                                            </div>
-                                            <p className="course-name">{item.course_name}</p>
-                                            <p className="name">{item.name}</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>15:10 - 17/08</td>
-                                        <td>Lập trình C++</td>
-                                        <td>
-                                        {(checkTime(item.start_time_ts, item.end_time_ts) === 1 &&
-                                             <strong>
-                                                 <Button type="primary" size="">Tham gia ngay</Button>
-                                            </strong>)
-                                            || (checkTime(item.start_time_ts, item.end_time_ts) === 0 &&
-                                            <Countdown title="Diá»…n ra sau" value={item.start_time_ts * 1000} />)
-                                            || (checkTime(item.start_time_ts, item.end_time_ts) === 2 &&
-                                                <p>Buổi học đã kết thúc</p>)
-                                            }
-                                        </td>
-                                    </tr>
-                                </>
+                            <tr key={item._id}>
+                                <td>
+                                    
+                                    <div className="start-time">
+                                        <p>
+                                            {moment.unix(item.start_time_ts).format('DD/MM/YYYY')}
+                                        </p>
+                                        <p>
+                                            {moment.unix(item.start_time_ts).format('HH:mm')} - {' ' + moment.unix(item.end_time_ts).format('HH:mm')}
+                                        </p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p className="course-name">{item.course_name}</p>
+                                    <p className="name">{item.name}</p>
+                                </td>
+                                <td>
+                                {(checkTime(item.start_time_ts, item.end_time_ts) === 1 &&
+                                        <strong>
+                                            <Button type="primary" size="">Tham gia ngay</Button>
+                                    </strong>)
+                                    || (checkTime(item.start_time_ts, item.end_time_ts) === 0 &&
+                                    <Countdown title="Diễn ra sau" value={item.start_time_ts * 1000} />)
+                                    || (checkTime(item.start_time_ts, item.end_time_ts) === 2 &&
+                                        <p>Buổi học đã kết thúc</p>)
+                                    }
+                                </td>
+                            </tr>
                             )
                         })}
                         </tbody>
@@ -124,6 +120,7 @@ export default function TeacherDashboard() {
                         </thead>
                         <tbody>
                             {lessionOver && lessionOver.map((item) => {
+                                return (
                                 <tr key={item._id}>
                                     <td>
                                         <div className="start-time">
@@ -133,20 +130,19 @@ export default function TeacherDashboard() {
                                             <p>
                                                 {moment.unix(item.start_time_ts).format('HH:mm')} - {' ' + moment.unix(item.end_time_ts).format('HH:mm')}
                                             </p>
-                                        {/* {item.start_time_ts - Math.floor(Date.now() / 1000) } */}
                                         </div>
                                     </td>
                                     <td>
                                         <p className="course-name">{item.course_name}</p>
                                         <p className="name">{item.name}</p>
                                     </td>
-                                        <td>
-                                        <Countdown title="Diễn ra sau" value={Date.now() + 5028 * 1000} />
-                                    <strong>
-                                        <Button type="primary" size="">Xuất báo cáo</Button>
-                                    </strong>
-                                        </td>
+                                    <td>
+                                        <strong>
+                                            <Button type="primary" size="">Xuất báo cáo</Button>
+                                        </strong>
+                                    </td>
                                 </tr>
+                                )
                             })}
                         </tbody>
                     </table>
