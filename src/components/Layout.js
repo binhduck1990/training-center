@@ -19,6 +19,14 @@ import {
 } from '@ant-design/icons';
 import '../css/teacher.css'
 import { domain } from '../helper'
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+    Redirect,
+    NavLink
+  } from "react-router-dom";
 
 const { Header, Sider } = Layout;
 
@@ -88,10 +96,19 @@ function LayoutDashboard({children}) {
                 </div>
                 <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
                     <Menu.Item key="1" icon={<DashboardOutlined  />}>
-                        Tổng quan
+                        <Link to={'/'}>
+                            Tổng quan
+                        </Link>
                     </Menu.Item>
                     <Menu.Item key="2" icon={<CalendarOutlined  />}>
-                        Lịch dạy
+                        <Link to={'/course'}>
+                            Lịch dạy
+                        </Link>
+                    </Menu.Item>
+                    <Menu.Item key="6" icon={<NotificationOutlined />}>
+                        <Link to={'/students'}>
+                            Học viên
+                        </Link>
                     </Menu.Item>
                     <Menu.Item key="3" icon={<CheckOutlined  />}>
                         Chấm điểm
@@ -101,9 +118,6 @@ function LayoutDashboard({children}) {
                     </Menu.Item>
                     <Menu.Item key="5" icon={<EditOutlined />}>
                         Soạn bài giảng
-                    </Menu.Item>
-                    <Menu.Item key="6" icon={<NotificationOutlined />}>
-                        Thông báo nhóm
                     </Menu.Item>
                     <Menu.Item key="7" icon={<PieChartOutlined />}>
                         Báo cáo

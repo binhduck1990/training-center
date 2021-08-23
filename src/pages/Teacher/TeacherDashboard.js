@@ -12,6 +12,7 @@ const { Text } = Typography;
 const { Countdown } = Statistic;
 
 export default function TeacherDashboard() {
+    const [onLoadingButton, setOnLoadingButton] = useState(false);
     const [listCourseComing, setListCourseComing] = useState([])
     const [startedAt, setStartedAt] = useState('');
 
@@ -33,6 +34,7 @@ export default function TeacherDashboard() {
         try{
             const data = await apiGetLinkLha({session_iid: session_iid})
             console.log(data)
+            setOnLoadingButton(false) // Trả trạng thái loading về false cho nút "Tham gia ngay"
             window.open(data.result.url);
         }catch (e) {
             handleError(e)
@@ -103,8 +105,10 @@ export default function TeacherDashboard() {
                                 </td>
                                 <td>
                                 {(checkTime(item.start_time_ts, item.end_time_ts) === 1 &&
-                                        <strong>
-                                            <Button type="primary" size="" onClick={() => getLinkLha(item.iid)}>Tham gia ngay</Button>
+                                    <strong>
+                                        <Button type="primary" loading={onLoadingButton} onClick={() => {getLinkLha(item.iid); setOnLoadingButton(true)} }>
+                                        Tham gia ngay
+                                        </Button>
                                     </strong>)
                                     || (checkTime(item.start_time_ts, item.end_time_ts) === 0 &&
                                     <Countdown title="Diễn ra sau" value={item.start_time_ts * 1000} />)

@@ -1,0 +1,276 @@
+.student-list-tabs .studen-list{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin-left: -20px;
+    margin-right: -20px;
+}
+.student-list-tabs .studen-list > .item{
+    padding: 0px 20px;
+    margin-bottom: 40px;
+}
+.student-list-tabs .studen-list > .item > div{
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.student-list-tabs .studen-list > .item > div .info{
+    width: 200px;
+    min-width: 200px;
+    padding-left: 10px;
+}
+.student-list-tabs .studen-list > .item > div .info p:nth-child(1){
+    font-weight: bold;
+    margin-bottom: 5px;
+    line-height: 22px;
+    font-size: 16px;
+    color: #444;
+}
+.student-list-tabs .studen-list > .item > div .info p:nth-child(2){
+    margin-bottom: 0px;
+}
+.student-list-tabs .studen-list > .item > div .avatar{
+    width: 60px;
+    height: 76px;
+}
+.student-list-tabs .ant-tabs-nav-wrap{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+.student-list-tabs .ant-tabs-nav-wrap .ant-tabs-nav-list{
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.student-list-tabs .ant-tabs-nav-wrap .ant-tabs-nav-list .ant-tabs-tab{
+    width: 200px;
+    font-weight: bold;
+}
+.student-list-tabs .ant-tabs-tab.ant-tabs-tab-active{
+    background-color: #1890ff;
+}
+.student-list-tabs .ant-tabs-tab{
+    margin: 0px !important;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.student-list-tabs .ant-tabs-tab .ant-tabs-tab-btn{
+    text-align: center;
+    width: 100%;
+}
+.student-list-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn{
+    color: #fff;
+}
+
+.student-list-tabs .group-student-list{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin-left: -20px;
+    margin-right: -20px;
+}
+.student-list-tabs .group-student-list > .item{
+    padding: 0px 20px;
+    margin-bottom: 40px;
+}
+.student-list-tabs .group-student-list > .item > div{
+    background-color: #fff;
+    padding: 5px;
+    border-radius: 3px;
+    cursor: pointer;
+    width: 300px;
+    height: 300px;
+}
+.student-list-tabs .group-student-list > .item .avatar{
+    width: 100%;
+    height: auto;
+    height: 180px;
+    object-fit: cover;
+}
+.student-list-tabs .group-student-list > .item > div .info{
+    padding: 10px;
+}
+.student-list-tabs .group-student-list > .item > div .info p:nth-child(1){
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 24px;
+    color: #444;
+    text-align: center;
+    margin-bottom: 5px;
+}
+.student-list-tabs .group-student-list > .item > div .info p:nth-child(2) {
+    text-align: center;
+    color: #666;
+}
+
+.student-draw .student-thumb{
+    width: 150px;
+    height: 190px;
+    object-fit: cover;
+    margin-right: 20px;
+    border-radius: 3px;
+}
+.student-draw .student-info{
+    display: flex;
+    justify-content: flex-start;
+    padding-bottom: 10px;
+    color: #000;
+}
+.student-draw .student-info h3{
+    font-size: 22px;
+    line-height: 30px;
+    margin-bottom: 5px;
+}
+.student-draw .student-info p{
+    margin-bottom: 8px;
+    font-size: 14px;
+    line-height: 19px;
+}
+.student-draw .student-message textarea{
+    margin-bottom: 10px;
+} 
+.student-draw .student-message h3{
+    font-size: 20px;
+}
+.student-draw .student-message h3 span{
+    font-size: 11px;
+    color: #888;
+    font-weight: normal;
+}
+.course-name-title{
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.group-student-draw .group-student-info h3{
+    font-size: 34px;
+    line-height: 40px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.group-student-draw .group-student-info > div p:nth-child(2){
+    text-align: center;
+    color: #444;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 0px;
+}
+.group-student-draw .group-student-info > div p:nth-child(2) span{
+    font-size: 12px;
+    color: #1890ff;
+    font-weight: normal;
+    font-style: italic;
+    cursor: pointer;
+}
+.group-student-draw .group-student-info > div p:nth-child(3){
+    font-size: 12px;
+    color: #1890ff;
+    font-weight: normal;
+    font-style: italic;
+    cursor: pointer;
+    text-align: center;
+}
+.student-draw .student-message h3{
+    font-size: 20px;
+}
+.group-student-draw .student-message h3 span{
+    font-size: 11px;
+    color: #888;
+    font-weight: normal;
+}
+.group-student-draw .student-message textarea{
+    margin-bottom: 10px;
+} 
+.group-student-list .item.add > div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.group-student-list .item.add > div .anticon-plus svg{
+    font-size: 100px;
+    font-weight: bold;
+    color: #666;
+}
+.group-student-list .item.add p{
+    margin-bottom: 0px;
+    text-align: center;
+}
+.group-student-draw-edit .ant-drawer-body{
+    /* padding: 0px;
+    padding-top: 10px; */
+}
+.group-student-draw-edit .student-in-group ul{
+    list-style-type: none;
+    padding-left: 0px;
+    margin-left: 0px;
+}
+.group-student-draw-edit .student-in-group ul li{
+    padding-bottom: 7px;
+    border: 1px solid #eee;
+    padding-top: 7px;
+    padding-left: 15px;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 15px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    background-color: #f0f0f0;
+}
+.group-student-draw-edit .student-in-group ul li.in-current-group{
+    background-color: #52c41a;
+}
+.group-student-draw-edit .student-in-group ul li.in-current-group span:nth-child(1){
+    color: #fff;
+}
+.group-student-draw-edit .student-in-group ul li.in-current-group span:nth-child(2){
+    color: #fff;
+}
+.group-student-draw-edit .student-in-group ul li:hover{
+    transform: translateX(-10px);
+}
+.group-student-draw-edit .student-in-group ul li.in-other-group:hover{
+    transform: translateX(0px);
+}
+.group-student-draw-edit .student-in-group ul li span:nth-child(2){
+    cursor: pointer;
+}
+.group-student-draw-edit .student-in-group ul li span:nth-child(1) {
+    font-weight: bold;
+    color: #444;
+}
+.group-student-draw-edit .student-in-group ul li span:nth-child(1) img{
+    width: 28px;
+    height: 28px;
+    border-radius: 28px;
+    margin-right: 5px;
+}
+.group-student-draw-edit .student-in-group ul li.in-other-group{
+    /* background-color: rgb(0 0 0 / 25%); */
+}
+.group-student-draw-edit .student-in-group ul li.in-other-group span{
+    /* color: #fff; */
+}
+.group-student-draw-edit .student-in-group ul li.in-other-group span:nth-child(2){
+    cursor: none;
+}
+.group-student-draw-edit .filter{
+    margin-bottom: 10px;
+    /* padding: 0px 10px; */
+}
+@media(max-width: 1600px) {
+    .student-list-tabs .group-student-list > .item{
+        width: 25%;
+    }
+}
+@media(max-width: 1366px) {
+    .student-list-tabs .group-student-list > .item{
+        width: 33.3333%;
+    }
+}

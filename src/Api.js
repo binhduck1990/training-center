@@ -12,7 +12,7 @@ let axiosInstance = axios.create(configAxios);
 const getCourseComing = async (payload = {}) => {
     let fd = new FormData();
     fd.append('is_teacher',1)
-    fd.append('items_per_page',5)
+    fd.append('items_per_page',10)
     fd.append('_sand_expand','scheduled')
     fd.append('_sand_ajax',1)
     fd.append('_sand_platform',3)
@@ -48,7 +48,7 @@ const apiGetLessionOver = async (payload = {}) => {
     fd.append('_sand_token','e14cf_UMxoe')
     fd.append('_sand_uiid',220587)
     fd.append('_sand_uid','5ed85dbcda049d22da692fc4')
-    fd.append('session_status',1)
+    fd.append('session_status',[1])
     try{
         const res = await axiosInstance.post(
             `/session/search`, fd
